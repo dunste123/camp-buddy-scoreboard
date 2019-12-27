@@ -86,6 +86,7 @@
 
                 return JSON.stringify(mapped);
             },
+            // This should not set the data but return it in the format that we want
             unmapScores () {
                 const stored = JSON.parse(localStorage.getItem('buddies'));
 
