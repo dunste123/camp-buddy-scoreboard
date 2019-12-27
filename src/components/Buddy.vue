@@ -1,7 +1,7 @@
 <template>
     <div>
         <img :src="`https://cdn.discordapp.com/emojis/${emoteId}.png?v=1`" :alt="name"/>
-        <h1 @click.prevent="test">{{ name }}</h1>
+        <h1>{{ name }}</h1>
         <h2>Score: {{ score }}</h2>
         <div class="buttons">
             <BuddyButton text="+" :action="incScore" />
