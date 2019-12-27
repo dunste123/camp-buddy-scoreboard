@@ -52,4 +52,9 @@
             text-align: center;
         }
     }
+
+    img {
+        width: 120px;
+        height: 128px;
+    }
 </style>

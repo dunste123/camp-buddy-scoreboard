@@ -25,11 +25,12 @@
         },
         data: () => ({
             buddies: [
-                {
+                // He should be added tbh
+                /*{
                     name: 'Keitaro',
                     emoteId: '514293667041771531',
                     score: 0,
-                },
+                },*/
 
                 {
                     name: 'Hiro',
