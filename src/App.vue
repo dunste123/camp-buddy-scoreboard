@@ -65,18 +65,38 @@
         }),
         mounted() {
             if (localStorage.getItem('buddies')) {
-                this.buddies = JSON.parse(localStorage.getItem('buddies'));
+                this.unmapScores();
             }
         },
         watch: {
             buddies: {
                 handler() {
-                   localStorage.setItem('buddies', JSON.stringify(this.buddies));
+                   localStorage.setItem('buddies', this.mapScores());
                 },
                 deep: true,
             },
         },
         methods: {
+            mapScores () {
+                const mapped = {};
+
+                this.buddies.forEach((buddy) => {
+                    mapped[buddy.name.toLowerCase()] = buddy.score;
+                });
+
+                return JSON.stringify(mapped);
+            },
+            unmapScores () {
+                const stored = JSON.parse(localStorage.getItem('buddies'));
+
+                Object.keys(stored).forEach((key) => {
+                    for (const buddy of this.buddies) {
+                        if (buddy.name.toLowerCase() === key) {
+                            buddy.score = stored[key];
+                        }
+                    }
+                });
+            },
             resetScores () {
                 localStorage.removeItem('buddies');
                 window.location.reload();
