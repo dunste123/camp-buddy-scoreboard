@@ -65,7 +65,7 @@
         }),
         mounted() {
             if (localStorage.getItem('buddies')) {
-                this.unmapScores();
+                this.buddies = this.unmapScores();
             }
         },
         watch: {
@@ -89,14 +89,20 @@
             // This should not set the data but return it in the format that we want
             unmapScores () {
                 const stored = JSON.parse(localStorage.getItem('buddies'));
+                const unmapped = [];
 
                 Object.keys(stored).forEach((key) => {
                     for (const buddy of this.buddies) {
                         if (buddy.name.toLowerCase() === key) {
-                            buddy.score = stored[key];
+                            unmapped.push({
+                                ...buddy,
+                                score: stored[key],
+                            });
                         }
                     }
                 });
+
+                return unmapped;
             },
             resetScores () {
                 localStorage.removeItem('buddies');
