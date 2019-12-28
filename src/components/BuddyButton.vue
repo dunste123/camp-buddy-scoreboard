@@ -1,5 +1,5 @@
 <template>
-    <button @click.prevent="action">{{ text }}</button>
+    <button @click.prevent="action" :class="{ 'no-margin': noMargin }">{{ text }}</button>
 </template>
 
 <script>
@@ -14,6 +14,7 @@
                 type: String,
                 required: true,
             },
+            noMargin: Boolean,
         },
     };
 </script>
@@ -31,6 +32,10 @@
         min-width: 50px;
         height: 50px;
         margin-left: 10px;
+
+        &.no-margin {
+            margin: 0 !important;
+        }
 
         &:hover {
             background: url("../assets/btn_hover.png") no-repeat;

@@ -8,7 +8,7 @@
 
 
         <div class="reset">
-            <BuddyButton :action="resetScores" text="Reset" />
+            <BuddyButton :action="resetScores" text="Reset" no-margin />
         </div>
     </div>
 </template>
@@ -119,9 +119,19 @@
         flex-direction: column;
 
         .reset {
-            align-self: center;
-            width: 100px;
+            margin: 0 auto;
+            display: block;
             padding-top: 3rem;
+            /*align-self: center;
+            justify-items: center;
+            padding-top: 3rem;
+            overflow: hidden;
+            width: 100vw;*/
+
+            button {
+                align-self: center;
+                /*width: 150px;*/
+            }
         }
 
         .buddies {
