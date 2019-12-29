@@ -112,6 +112,16 @@
     };
 </script>
 
+<!--<style>
+    *:not(path):not(g) {
+        color:                    hsla(210, 100%, 100%, 0.9) !important;
+        background:               hsla(210, 100%,  50%, 0.5) !important;
+        outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+        box-shadow: none !important;
+    }
+</style>-->
+
 <style lang="scss" scoped>
     #app {
         margin: 3rem;
@@ -122,6 +132,8 @@
             margin: 0 auto;
             display: block;
             padding-top: 3rem;
+            align-self: center;
+
             /*align-self: center;
             justify-items: center;
             padding-top: 3rem;
