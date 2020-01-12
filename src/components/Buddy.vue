@@ -47,14 +47,31 @@
 </script>
 
 <style lang="scss" scoped>
-    @for $i from 1 through 2 {
-        h#{$i} {
-            text-align: center;
+    div {
+        text-align: center;
+    }
+
+    // @for $i from 1 through 2 {
+    //     h#{$i} {
+    //         text-align: center;
+    //     }
+    // }
+
+    img {
+        width: 128px;
+        height: 128px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        img {
+            width: 64px;
+            height: 64px;
         }
     }
 
-    img {
-        width: 120px;
-        height: 128px;
+    @media only screen and (max-width: 371px) {
+        div {
+            width: 100%;
+        }
     }
 </style>

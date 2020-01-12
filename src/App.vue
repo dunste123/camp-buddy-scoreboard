@@ -1,9 +1,7 @@
 <template>
     <div id="app">
         <div class="buddies">
-            <div class="buddy" v-for="(item, key) in buddies" :key="key">
-                <Buddy v-model="buddies[key]"/>
-            </div>
+            <Buddy class="buddy" v-for="(item, key) in buddies" :key="key" v-model="buddies[key]"/>
         </div>
 
 
@@ -86,21 +84,26 @@
 
                 return JSON.stringify(mapped);
             },
-            // This should not set the data but return it in the format that we want
             unmapScores () {
                 const stored = JSON.parse(localStorage.getItem('buddies'));
-                const unmapped = [];
+                const unmapped = JSON.parse(JSON.stringify(this.buddies)); // Hacky way of cloning
 
-                Object.keys(stored).forEach((key) => {
-                    for (const buddy of this.buddies) {
-                        if (buddy.name.toLowerCase() === key) {
-                            unmapped.push({
-                                ...buddy,
-                                score: stored[key],
-                            });
-                        }
+                unmapped.forEach((b) => {
+                    const name  = b.name.toLowerCase();
+                    const score = stored[name];
+
+                    if (score !== undefined) {
+                        b.score = score;
                     }
                 });
+
+                /*Object.keys(stored).forEach((key) => {
+                    for (const buddy of this.buddies) {
+                        if (buddy.name.toLowerCase() === key) {
+                            unmapped.score = stored[key];
+                        }
+                    }
+                });*/
 
                 return unmapped;
             },
@@ -148,8 +151,13 @@
 
         .buddies {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
+
+            .buddy {
+                margin: 5px;
+            }
         }
     }
 </style>
