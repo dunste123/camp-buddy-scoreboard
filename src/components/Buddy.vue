@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img :src="`https://cdn.discordapp.com/emojis/${emoteId}.png?v=1`" :alt="name"/>
+        <img :src="`https://cdn.discordapp.com/emojis/${emoteId}.png?v=1`" :alt="name" crossorigin="anonymous"/>
         <h1>{{ name }}</h1>
         <h2>Score: {{ score }}</h2>
         <div class="buttons">

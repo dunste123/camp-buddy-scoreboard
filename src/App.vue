@@ -62,6 +62,14 @@
             ],
         }),
         mounted() {
+            if (localStorage.getItem('keitaro') === 'true') {
+                this.buddies.unshift({
+                    name: 'Keitaro',
+                    emoteId: '514293667041771531',
+                    score: 0,
+                });
+            }
+
             if (localStorage.getItem('buddies')) {
                 this.buddies = this.unmapScores();
             }
