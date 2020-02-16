@@ -6,121 +6,125 @@
 
 
         <div class="reset">
-            <BuddyButton :action="resetScores" text="Reset" no-margin />
+            <BuddyButton :action="resetScores" text="Reset" no-margin/>
         </div>
     </div>
 </template>
 
 <script>
-    import Buddy from './components/Buddy.vue';
-    import BuddyButton from './components/BuddyButton';
+  import Buddy from './components/Buddy.vue';
+  import BuddyButton from './components/BuddyButton';
 
-    export default {
-        name: 'app',
-        components: {
-            BuddyButton,
-            Buddy,
+  export default {
+    name: 'app',
+    components: {
+      BuddyButton,
+      Buddy,
+    },
+    data: () => ({
+      buddies: [
+        // He should be added tbh
+        /*{
+            name: 'Keitaro',
+            emoteId: '514293667041771531',
+            score: 0,
+        },*/
+
+        {
+          name: 'Hiro',
+          emoteId: '514293666853158913',
+          score: 0,
         },
-        data: () => ({
-            buddies: [
-                // He should be added tbh
-                /*{
-                    name: 'Keitaro',
-                    emoteId: '514293667041771531',
-                    score: 0,
-                },*/
 
-                {
-                    name: 'Hiro',
-                    emoteId: '514293666853158913',
-                    score: 0,
-                },
+        {
+          name: 'Natsumi',
+          emoteId: '514293667192766465',
+          score: 0,
+        },
 
-                {
-                    name: 'Natsumi',
-                    emoteId: '514293667192766465',
-                    score: 0,
-                },
+        {
+          name: 'Hunter',
+          emoteId: '514294078570102784',
+          score: 0,
+        },
 
-                {
-                    name: 'Hunter',
-                    emoteId: '514294078570102784',
-                    score: 0,
-                },
+        {
+          name: 'Yoichi',
+          emoteId: '514293667595419663',
+          score: 0,
+        },
 
-                {
-                    name: 'Yoichi',
-                    emoteId: '514293667595419663',
-                    score: 0,
-                },
+        {
+          name: 'Taiga',
+          emoteId: '514293667507208193',
+          score: 0,
+        },
+      ],
+    }),
+    mounted () {
+      if (localStorage.getItem('keitaro') === 'true') {
+        this.buddies.unshift({
+          name: 'Keitaro',
+          emoteId: '514293667041771531',
+          score: 0,
+        });
+      }
 
-                {
-                    name: 'Taiga',
-                    emoteId: '514293667507208193',
-                    score: 0,
-                },
-            ],
-        }),
-        mounted() {
-            if (localStorage.getItem('keitaro') === 'true') {
-                this.buddies.unshift({
-                    name: 'Keitaro',
-                    emoteId: '514293667041771531',
-                    score: 0,
-                });
+      if (localStorage.getItem('buddies')) {
+        this.buddies = this.unmapScores();
+      }
+    },
+    watch: {
+      buddies: {
+        handler () {
+          localStorage.setItem('buddies', this.mapScores());
+        },
+        deep: true,
+      },
+    },
+    methods: {
+      mapScores () {
+        const mapped = {};
+
+        this.buddies.forEach((buddy) => {
+          mapped[buddy.name.toLowerCase()] = buddy.score;
+        });
+
+        return JSON.stringify(mapped);
+      },
+      unmapScores () {
+        const stored = JSON.parse(localStorage.getItem('buddies'));
+        const unmapped = JSON.parse(JSON.stringify(this.buddies)); // Hacky way of cloning
+
+        unmapped.forEach((b) => {
+          const name = b.name.toLowerCase();
+          const score = stored[name];
+
+          if (score !== undefined) {
+            b.score = score;
+          }
+        });
+
+        /*Object.keys(stored).forEach((key) => {
+            for (const buddy of this.buddies) {
+                if (buddy.name.toLowerCase() === key) {
+                    unmapped.score = stored[key];
+                }
             }
+        });*/
 
-            if (localStorage.getItem('buddies')) {
-                this.buddies = this.unmapScores();
-            }
-        },
-        watch: {
-            buddies: {
-                handler() {
-                   localStorage.setItem('buddies', this.mapScores());
-                },
-                deep: true,
-            },
-        },
-        methods: {
-            mapScores () {
-                const mapped = {};
+        return unmapped;
+      },
+      resetScores () {
+        const conf = confirm('Hold up buddy\nThis will reset all your scores, are you sure?');
 
-                this.buddies.forEach((buddy) => {
-                    mapped[buddy.name.toLowerCase()] = buddy.score;
-                });
-
-                return JSON.stringify(mapped);
-            },
-            unmapScores () {
-                const stored = JSON.parse(localStorage.getItem('buddies'));
-                const unmapped = JSON.parse(JSON.stringify(this.buddies)); // Hacky way of cloning
-
-                unmapped.forEach((b) => {
-                    const name  = b.name.toLowerCase();
-                    const score = stored[name];
-
-                    if (score !== undefined) {
-                        b.score = score;
-                    }
-                });
-
-                /*Object.keys(stored).forEach((key) => {
-                    for (const buddy of this.buddies) {
-                        if (buddy.name.toLowerCase() === key) {
-                            unmapped.score = stored[key];
-                        }
-                    }
-                });*/
-
-                return unmapped;
-            },
-            resetScores () {
-                localStorage.removeItem('buddies');
-                window.location.reload();
-            },
-        },
-    };
+        if (conf) {
+          localStorage.removeItem('buddies');
+          window.location.reload();
+        }
+      },
+    },
+  };
 </script>
 
 <!--<style>
