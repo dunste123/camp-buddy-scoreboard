@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import ForkRibbon from "./components/ForkRibbon";
+import BuddyStore from "./BuddyStore";
+import BuddyComponent from "./components/BuddyComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+  _store;
+
+  constructor(props) {
+    super(props);
+    this._store = new BuddyStore();
+
+    window.buddies = this._store.buddies;
+  }
+
+  render () {
+    const buddies = this._store.buddies;
+
+    return (
+        <div className="App">
+          <ForkRibbon/>
+
+          <div className="buddies">
+            { buddies.map((buddy) => <BuddyComponent buddy={buddy} key={buddy.emoteId} /> ) }
+          </div>
+        </div>
+    );
+  }
 }
-
-export default App;
