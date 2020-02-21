@@ -1,5 +1,7 @@
 <template>
     <div id="app">
+        <ForkRibbon/>
+
         <div class="buddies">
             <Buddy class="buddy" v-for="(item, key) in buddies" :key="key" v-model="buddies[key]"/>
         </div>
@@ -14,10 +16,12 @@
 <script>
   import Buddy from './components/Buddy.vue';
   import BuddyButton from './components/BuddyButton';
+  import ForkRibbon from './components/ForkRibbon';
 
   export default {
     name: 'app',
     components: {
+      ForkRibbon,
       BuddyButton,
       Buddy,
     },
