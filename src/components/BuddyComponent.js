@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { css, jsx } from '@emotion/core'
 import type { Buddy } from "../types/Buddy";
 import PropTypes from 'prop-types';
