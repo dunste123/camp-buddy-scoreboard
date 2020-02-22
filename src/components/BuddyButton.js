@@ -6,7 +6,7 @@ import btnIdle from '../assets/btn_idle.png';
 import btnHover from '../assets/btn_hover.png';
 
 export default class BuddyButton extends Component {
-  buttonCss = css`
+  _buttonCss = css`
     background: url(${btnIdle}) no-repeat;
     background-size: 100% 100%;
     line-height: 0;
@@ -33,7 +33,7 @@ export default class BuddyButton extends Component {
     const {text, click} = this.props;
 
     return (
-        <button css={this.buttonCss} onClick={click}>{ text }</button>
+        <button css={this._buttonCss} onClick={click}>{ text }</button>
     );
   }
 }
