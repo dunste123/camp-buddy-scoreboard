@@ -85,6 +85,8 @@ export default class BuddyStore {
     }
 
     this.#buddies[index].score = score;
+
+    this._saveScores();
   }
 
   _checkKeitaro(): void {
@@ -122,6 +124,18 @@ export default class BuddyStore {
         this.setScore(name, buddies[name]);
       }
     }
+  }
+
+  _saveScores(): void {
+    const mapped = {};
+
+    this.#buddies.forEach((buddy) => {
+      mapped[buddy.name.toLowerCase()] = buddy.score;
+    });
+
+    const json = JSON.stringify(mapped);
+
+    localStorage.setItem('buddies', json);
   }
 
 }
