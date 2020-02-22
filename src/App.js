@@ -54,6 +54,15 @@ export default class App extends Component {
     this.setState({});
   };
 
+  _resetScores = () => {
+    const conf = window.confirm('Hold up buddy\nThis will reset all your scores, are you sure?');
+
+    if (conf) {
+      this._store.resetScores();
+      window.location.reload();
+    }
+  };
+
   render () {
     const buddies = this._store.buddies;
 
@@ -71,7 +80,7 @@ export default class App extends Component {
           </div>
 
           <div css={this._resetContainer}>
-            <BuddyButton css={this._resetButton} text="Reset" click={() => {}}/>
+            <BuddyButton css={this._resetButton} text="Reset" click={this._resetScores}/>
           </div>
         </div>
     );

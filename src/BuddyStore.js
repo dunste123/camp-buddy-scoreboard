@@ -44,7 +44,7 @@ export default class BuddyStore {
       },
     ];
 
-  constructor() {
+  constructor(): void {
     this._checkKeitaro();
     this._setIndexes();
     this._loadScores();
@@ -54,13 +54,13 @@ export default class BuddyStore {
     return this.#buddies;
   }
 
-  incrementScore(name: string) {
+  incrementScore(name: string): void {
     const score = this.getScore(name);
 
     this.setScore(name, score + 1);
   }
 
-  decrementScore(name: string) {
+  decrementScore(name: string): void {
     const score = this.getScore(name);
 
     this.setScore(name, score - 1);
@@ -87,6 +87,10 @@ export default class BuddyStore {
     this.#buddies[index].score = score;
 
     this._saveScores();
+  }
+
+  resetScores(): void {
+    localStorage.removeItem('buddies');
   }
 
   _checkKeitaro(): void {
