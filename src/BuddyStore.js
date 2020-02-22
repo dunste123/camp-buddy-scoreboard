@@ -1,9 +1,11 @@
-import type {Buddy} from "./types/Buddy";
-
 export default class BuddyStore {
   #indexes = {};
 
-  #buddies: Array<Buddy> = [
+  /**
+   *
+   * @type Buddy[]
+   */
+  #buddies = [
       // He should be added tbh
       /*{
           name: 'Keitaro',
@@ -43,6 +45,49 @@ export default class BuddyStore {
     ];
 
   constructor() {
+    this._checkKeitaro();
+    this._setIndexes();
+    this._loadScores();
+  }
+
+  get buddies() {
+    return this.#buddies;
+  }
+
+  incrementScore(name: string) {
+    const score = this.getScore(name);
+
+    this.setScore(name, score + 1);
+  }
+
+  decrementScore(name: string) {
+    const score = this.getScore(name);
+
+    this.setScore(name, score - 1);
+  }
+
+  getScore(name: string): number {
+    const index = this.#indexes[name.toLowerCase()];
+
+    if (typeof index === 'undefined') {
+      throw new Error(`Missing buddy: ${name}`);
+    }
+
+    return this.#buddies[index].score;
+  }
+
+  setScore(name: string, score: number): void {
+    const index = this.#indexes[name.toLowerCase()];
+
+    if (typeof index === 'undefined') {
+      return;
+      // throw new Error(`Missing buddy: ${name}`);
+    }
+
+    this.#buddies[index].score = score;
+  }
+
+  _checkKeitaro(): void {
     if (localStorage.getItem('keitaro') === 'true') {
       this.#buddies.unshift({
         name: 'Keitaro',
@@ -50,13 +95,17 @@ export default class BuddyStore {
         score: 0,
       });
     }
+  }
 
+  _setIndexes(): void {
     for (let i = 0; i < this.#buddies.length; i++) {
       const buddy = this.#buddies[i];
 
       this.#indexes[buddy.name.toLowerCase()] = i;
     }
+  }
 
+  _loadScores(): void {
     const storedBuddies = localStorage.getItem('buddies');
 
     if (storedBuddies) {
@@ -73,21 +122,6 @@ export default class BuddyStore {
         this.setScore(name, buddies[name]);
       }
     }
-  }
-
-  get buddies() {
-    return this.#buddies;
-  }
-
-  setScore(name: string, score: number): void {
-    const index = this.#indexes[name.toLowerCase()];
-
-    if (typeof index === 'undefined') {
-      return;
-      // throw new Error(`Missing buddy: ${name}`);
-    }
-
-    this.#buddies[index].score = score;
   }
 
 }

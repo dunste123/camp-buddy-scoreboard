@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e2f215a-5abd-4a49-81e4-4b38d2eb641d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BuddyStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BuddyComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ForkRibbon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Buddy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/camp-buddy-scoreboard.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CNAME" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/btn_hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/btn_idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BuddyButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BuddyStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BuddyStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BuddyComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BuddyComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Yarn/Data/global/node_modules/@vue/cli" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -64,7 +67,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="D:\Program Files\jetbrains\apps\PhpStorm\ch-0\193.6494.47\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\development\javascript\camp-buddy-scoreboard" />
+      <recent name="D:\development\javascript\camp-buddy-scoreboard\src\assets" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -76,7 +86,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582312216969</updated>
-      <workItem from="1582312220377" duration="3517000" />
+      <workItem from="1582312220377" duration="3629000" />
+      <workItem from="1582363360554" duration="2695000" />
+      <workItem from="1582371393683" duration="1663000" />
     </task>
     <servers />
   </component>
