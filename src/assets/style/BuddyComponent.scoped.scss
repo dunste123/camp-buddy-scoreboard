@@ -1,0 +1,17 @@
+.buddy {
+  text-align: center;
+
+  @media only screen and (max-width: 371px) {
+    width: 100%;
+  }
+
+  img {
+    width: 128px;
+    height: 128px;
+
+    @media only screen and (max-width: 600px) {
+      width: 64px;
+      height: 64px;
+    }
+  }
+}

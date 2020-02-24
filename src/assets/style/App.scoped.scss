@@ -1,0 +1,27 @@
+.container {
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  .buddies {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .buddy {
+      margin: 5px;
+    }
+  }
+
+  .reset {
+    margin: 0 auto;
+    display: block;
+    padding-top: 3rem;
+    align-self: center;
+
+    button {
+      align-self: center;
+    }
+  }
+}

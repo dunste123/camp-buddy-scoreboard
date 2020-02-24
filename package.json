@@ -9,21 +9,35 @@
     "react-scripts": "3.4.0"
   },
   "devDependencies": {
+    "@craco/craco": "^5.6.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@emotion/core": "^10.0.27",
+    "craco-plugin-scoped-css": "^1.0.0",
     "node-sass": "^4.13.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs && mv build docs",
+    "start-old": "react-scripts start",
+    "start": "craco start",
+    "build-old": "react-scripts build && rm -rf docs && mv build docs",
+    "build": "craco build && rm -rf docs && mv build docs",
     "postbuild": "cp CNAME docs && git add *",
-    "test": "react-scripts test",
+    "test-old": "react-scripts test",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "indent": [
+        "error",
+        4
+      ]
+    }
   },
   "browserslist": {
     "production": [
