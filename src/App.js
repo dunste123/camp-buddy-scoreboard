@@ -50,7 +50,7 @@ export default class App extends Component {
                 </div>
 
                 <div className="reset">
-                    <BuddyButton noMargin={true} text="Reset" click={this._resetScores}/>
+                    <BuddyButton text="Reset" click={this._resetScores}/>
                 </div>
             </div>
         );

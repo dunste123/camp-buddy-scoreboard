@@ -5,11 +5,10 @@ import "../assets/style/BuddyButton.scoped.scss";
 export default class BuddyButton extends Component {
 
     render () {
-        const { text, click, noMargin } = this.props;
-        const marginCls = noMargin ? "no-margin" : "";
+        const { text, click } = this.props;
 
         return (
-            <button className={marginCls} onClick={click}>{text}</button>
+            <button onClick={click}>{text}</button>
         );
     }
 }
@@ -17,5 +16,4 @@ export default class BuddyButton extends Component {
 BuddyButton.propTypes = {
     text: PropTypes.string.isRequired,
     click: PropTypes.func.isRequired,
-    noMargin: PropTypes.bool,
 };
