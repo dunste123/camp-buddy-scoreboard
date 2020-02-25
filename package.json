@@ -20,7 +20,7 @@
     "start-old": "react-scripts start",
     "start": "craco start",
     "build-old": "react-scripts build && rm -rf docs && mv build docs",
-    "build": "craco build",
+    "build": "craco build && node move_output.js",
     "postbuild-old": "rm -rf docs && mv build docs && cp CNAME docs && git add *",
     "test-old": "react-scripts test",
     "test": "craco test",

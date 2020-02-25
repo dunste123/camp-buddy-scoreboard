@@ -11,8 +11,6 @@ export default class App extends Component {
     constructor (props) {
         super(props);
         this._store = new BuddyStore();
-
-        window.buddies = this._store.buddies;
     }
 
     _incrementScore = (buddy: string) => {

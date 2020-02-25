@@ -12,29 +12,38 @@ if (!fs.existsSync(buildDir)) {
     process.exit(-1);
 }
 
-if (fs.existsSync(outputDir)) {
-    // NOTE: requires nodejs 13+
-    fs.rmdirSync(outputDir, {
-        recursive: true,
+async function a() {
+    if (fs.existsSync(outputDir)) {
+        // NOTE: requires nodejs 13+
+        fs.rmdirSync(outputDir, {
+            recursive: true,
+        });
+    }
+
+    // Wait a few seconds for some reason
+    await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000);
+    });
+
+    fs.renameSync(buildDir, outputDir);
+
+    console.log(cnameOutput);
+
+    fs.copyFileSync(cname, cnameOutput);
+
+    exec("git add *", (err, stdout, stderr) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        // the *entire* stdout and stderr (buffered)
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
     });
 }
 
-fs.renameSync(buildDir, outputDir);
-
-console.log(cnameOutput);
-
-fs.copyFileSync(cname, cnameOutput);
-
-exec("git add *", (err, stdout, stderr) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    // the *entire* stdout and stderr (buffered)
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-});
+a();
 
 // Finally: remove build dir
 /*if (fs.existsSync(buildDir)) {
