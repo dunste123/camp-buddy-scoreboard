@@ -7,7 +7,7 @@ export const BuddyObjectType = {
 };*/
 
 export type Buddy = {
-  emoteId: string;
-  name: string;
-  score: number;
+    emoteId: string;
+    name: string;
+    score: number;
 };
