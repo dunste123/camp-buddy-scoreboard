@@ -20,8 +20,8 @@
     "start-old": "react-scripts start",
     "start": "craco start",
     "build-old": "react-scripts build && rm -rf docs && mv build docs",
-    "build": "craco build && rm -rf docs && mv build docs",
-    "postbuild": "cp CNAME docs && git add *",
+    "build": "craco build",
+    "postbuild-old": "rm -rf docs && mv build docs && cp CNAME docs && git add *",
     "test-old": "react-scripts test",
     "test": "craco test",
     "eject": "react-scripts eject"
@@ -36,6 +36,10 @@
       "indent": [
         "error",
         4
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
       ]
     }
   },
