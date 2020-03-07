@@ -3,23 +3,25 @@ import ForkRibbon from "./components/ForkRibbon";
 import BuddyStore from "./BuddyStore";
 import BuddyComponent from "./components/BuddyComponent";
 import BuddyButton from "./components/BuddyButton";
+import { store } from "./store";
 import "./assets/style/App.scoped.scss";
 
 export default class App extends Component {
-    _store;
+    #store;
 
     constructor (props) {
         super(props);
-        this._store = new BuddyStore();
+        console.log(store);
+        this.#store = new BuddyStore();
     }
 
     _incrementScore = (buddy: string) => {
-        this._store.incrementScore(buddy);
+        this.#store.incrementScore(buddy);
         this.setState({});
     };
 
     _decrementScore = (buddy: string) => {
-        this._store.decrementScore(buddy);
+        this.#store.decrementScore(buddy);
         this.setState({});
     };
 
@@ -27,13 +29,13 @@ export default class App extends Component {
         const conf = window.confirm("Hold up buddy\nThis will reset all your scores, are you sure?");
 
         if (conf) {
-            this._store.resetScores();
+            this.#store.resetScores();
             window.location.reload();
         }
     };
 
     render () {
-        const buddies = this._store.buddies;
+        const buddies = this.#store.buddies;
 
         return (
             <div className="container">
