@@ -1,62 +1,64 @@
 {
-  "name": "camp-buddy-scoreboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0",
-    "redux": "^4.0.5"
-  },
-  "devDependencies": {
-    "@craco/craco": "^5.6.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "craco-plugin-scoped-css": "^1.0.0",
-    "node-sass": "^4.13.1"
-  },
-  "scripts": {
-    "start-old": "react-scripts start",
-    "start": "craco start",
-    "build-old": "react-scripts build && rm -rf docs && mv build docs",
-    "build": "craco build && node move_output.js",
-    "postbuild-old": "rm -rf docs && mv build docs && cp CNAME docs && git add *",
-    "test-old": "react-scripts test",
-    "test": "craco test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "quotes": [
-        "error",
-        "double"
-      ],
-      "indent": [
-        "error",
-        4,
-        {
-          "SwitchCase": 1
+    "name": "camp-buddy-scoreboard",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "prop-types": "^15.7.2",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-scripts": "3.4.0"
+    },
+    "devDependencies": {
+        "@craco/craco": "^5.6.3",
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "craco-plugin-scoped-css": "^1.0.0",
+        "node-sass": "^4.13.1",
+        "redux": "^4.0.5",
+        "redux-thunk": "^2.3.0",
+        "react-redux": "^7.2.0"
+    },
+    "scripts": {
+        "start-old": "react-scripts start",
+        "start": "craco start",
+        "build-old": "react-scripts build && rm -rf docs && mv build docs",
+        "build": "craco build && node move_output.js",
+        "postbuild-old": "rm -rf docs && mv build docs && cp CNAME docs && git add *",
+        "test-old": "react-scripts test",
+        "test": "craco test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app",
+        "rules": {
+            "quotes": [
+                "error",
+                "double"
+            ],
+            "indent": [
+                "error",
+                4,
+                {
+                    "SwitchCase": 1
+                }
+            ],
+            "comma-dangle": [
+                "error",
+                "always-multiline"
+            ]
         }
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
 }
