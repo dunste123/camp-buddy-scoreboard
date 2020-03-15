@@ -31,7 +31,7 @@ async function a() {
 
     fs.copyFileSync(cname, cnameOutput);
 
-    exec("git add *", (err, stdout, stderr) => {
+    exec("git add .", (err, stdout, stderr) => {
         if (err) {
             console.log(err);
             return;
