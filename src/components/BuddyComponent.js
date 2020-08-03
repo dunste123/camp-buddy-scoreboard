@@ -5,11 +5,23 @@ import BuddyButton from "./BuddyButton";
 import "../assets/style/BuddyComponent.scoped.scss";
 
 export default class BuddyComponent extends Component {
+    _extraScores ({ title, score }, key) {
+        return (<div className="buddy" key={key}>
+            <h3>{title}</h3>
+            <h4>Score: {score}</h4>
+            <div className="buttons">
+                <BuddyButton text="+" click={() => {}}/>
+                <BuddyButton text="-" click={() => {}}/>
+            </div>
+        </div>);
+    }
+
+
     render () {
         const { incrementScore, decrementScore } = this.props;
 
         const buddy: Buddy = this.props.buddy;
-        const { name, emoteId, score } = buddy;
+        const { name, emoteId, score, extra_scores } = buddy;
         const imgSrc = `https://cdn.discordapp.com/emojis/${emoteId}.png?v=1`;
 
         return (<div className="buddy">
@@ -20,6 +32,7 @@ export default class BuddyComponent extends Component {
                 <BuddyButton text="+" click={incrementScore}/>
                 <BuddyButton text="-" click={decrementScore}/>
             </div>
+            { extra_scores ? extra_scores.map((score, index) => this._extraScores(score, index)) : "" }
         </div>);
     }
 }

@@ -41,6 +41,16 @@ export default class BuddyStore {
             name: "Taiga",
             emoteId: "514293667507208193",
             score: 0,
+            extra_scores: [
+                {
+                    title: "Top",
+                    score: 0,
+                },
+                {
+                    title: "Bottom",
+                    score: 0,
+                },
+            ],
         },
     ];
 

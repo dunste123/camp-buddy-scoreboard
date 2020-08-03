@@ -10,4 +10,8 @@ export type Buddy = {
     emoteId: string;
     name: string;
     score: number;
+    extra_scores?: [{
+        title: string;
+        score: number;
+    }];
 };
