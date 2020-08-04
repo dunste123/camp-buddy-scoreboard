@@ -23,6 +23,16 @@ export default class App extends Component {
         this.setState({});
     };
 
+    _incExtraScore = (buddy: string, title: string) => {
+        this._store.incrementExtraScore(buddy, title);
+        this.setState({});
+    };
+
+    _decExtraScore = (buddy: string, title: string) => {
+        this._store.decrementExtraScore(buddy, title);
+        this.setState({});
+    };
+
     _resetScores = () => {
         const conf = window.confirm("Hold up buddy\nThis will reset all your scores, are you sure?");
 
@@ -46,7 +56,9 @@ export default class App extends Component {
                             key={buddy.emoteId}
                             className="buddy"
                             incrementScore={() => this._incrementScore(buddy.name)}
-                            decrementScore={() => this._decrementScore(buddy.name)}/>)}
+                            decrementScore={() => this._decrementScore(buddy.name)}
+                            incExtraScore={(scoreName) => this._incExtraScore(buddy.name, scoreName)}
+                            decExtraScore={(scoreName) => this._decExtraScore(buddy.name, scoreName)}/>)}
                 </div>
 
                 <div className="reset">

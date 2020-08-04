@@ -76,6 +76,18 @@ export default class BuddyStore {
         this.setScore(name, score - 1);
     }
 
+    incrementExtraScore (name: string, title: string): void {
+        const score = this.getExtraScore(name, title);
+
+        this.setExtraScore(name, title, score + 1);
+    }
+
+    decrementExtraScore (name: string, title: string): void {
+        const score = this.getExtraScore(name, title);
+
+        this.setExtraScore(name, title, score - 1);
+    }
+
     getScore (name: string): number {
         const index = this.#indexes[name.toLowerCase()];
 
@@ -84,6 +96,20 @@ export default class BuddyStore {
         }
 
         return this.#buddies[index].score;
+    }
+
+    getExtraScore (name: string, title: string): number {
+        const index = this.#indexes[name.toLowerCase()];
+
+        if (typeof index === "undefined") {
+            throw new Error(`Missing buddy: ${name}`);
+        }
+
+
+        const scores = this.#buddies[index].extra_scores;
+        const sIndex = scores.findIndex((item) => item.title === title);
+
+        return scores[sIndex].score;
     }
 
     setScore (name: string, score: number): void {
@@ -95,6 +121,26 @@ export default class BuddyStore {
         }
 
         this.#buddies[index].score = score;
+
+        this._saveScores();
+    }
+
+    setExtraScore (name: string, title: string, score: number): void {
+        const index = this.#indexes[name.toLowerCase()];
+
+        if (typeof index === "undefined") {
+            return;
+            // throw new Error(`Missing buddy: ${name}`);
+        }
+
+        const scores = this.#buddies[index].extra_scores;
+        const sIndex = scores.findIndex((item) => item.title === title);
+
+        if (sIndex < 0) {
+            return;
+        }
+
+        scores[sIndex].score = score;
 
         this._saveScores();
     }
@@ -131,6 +177,15 @@ export default class BuddyStore {
             for (const name of keys) {
                 console.log(name);
 
+                if (name.includes("__")) {
+                    // [0] == buddy name, [1] == extra name
+                    const strings = name.split("__");
+
+                    this.setExtraScore(strings[0], strings[1], buddies[name]);
+
+                    continue;
+                }
+
                 if (!buddies.hasOwnProperty(name)) {
                     continue;
                 }
@@ -145,6 +200,12 @@ export default class BuddyStore {
 
         this.#buddies.forEach((buddy) => {
             mapped[buddy.name.toLowerCase()] = buddy.score;
+
+            if (buddy.extra_scores) {
+                buddy.extra_scores.forEach((score) => {
+                    mapped[`${buddy.name.toLowerCase()}__${score.title}`] = score.score;
+                });
+            }
         });
 
         const json = JSON.stringify(mapped);
