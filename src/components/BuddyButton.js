@@ -5,10 +5,10 @@ import "../assets/style/BuddyButton.scoped.scss";
 export default class BuddyButton extends Component {
 
     render () {
-        const { text, click } = this.props;
+        const { text, click, active = false } = this.props;
 
         return (
-            <button onClick={click}>{text}</button>
+            <button className={active ? "active" : ""} onClick={click}>{text}</button>
         );
     }
 }

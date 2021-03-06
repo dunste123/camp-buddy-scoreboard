@@ -1,65 +1,49 @@
 import React, { Component } from "react";
 import ForkRibbon from "./components/ForkRibbon";
-import BuddyStore from "./BuddyStore";
-import BuddyComponent from "./components/BuddyComponent";
 import BuddyButton from "./components/BuddyButton";
 import "./assets/style/App.scoped.scss";
+import BuddyView from "./BuddyView";
 
 export default class App extends Component {
-    _store;
+    _viewRef;
+    _current = "buddies";
 
     constructor (props) {
         super(props);
-        this._store = new BuddyStore();
+        this._viewRef = React.createRef();
     }
 
-    _incrementScore = (buddy: string) => {
-        this._store.incrementScore(buddy);
-        this.setState({});
-    };
-
-    _decrementScore = (buddy: string) => {
-        this._store.decrementScore(buddy);
-        this.setState({});
-    };
-
-    _incExtraScore = (buddy: string, title: string) => {
-        this._store.incrementExtraScore(buddy, title);
-        this.setState({});
-    };
-
-    _decExtraScore = (buddy: string, title: string) => {
-        this._store.decrementExtraScore(buddy, title);
-        this.setState({});
-    };
-
     _resetScores = () => {
-        const conf = window.confirm("Hold up buddy\nThis will reset all your scores, are you sure?");
-
-        if (conf) {
-            this._store.resetScores();
-            window.location.reload();
+        if (this._current === "buddies") {
+            this._viewRef.current.resetScores();
+        } else {
+            // scoutmasters
         }
     };
 
-    render () {
-        const buddies = this._store.buddies;
+    _setCurrent = (current: string) => {
+        this._current = current;
+        this.setState({});
+    }
 
+    render () {
         return (
             <div className="container">
                 <ForkRibbon/>
 
-                <div className="buddies">
-                    {buddies.map((buddy) =>
-                        <BuddyComponent
-                            buddy={buddy}
-                            key={buddy.emoteId}
-                            className="buddy"
-                            incrementScore={() => this._incrementScore(buddy.name)}
-                            decrementScore={() => this._decrementScore(buddy.name)}
-                            incExtraScore={(scoreName) => this._incExtraScore(buddy.name, scoreName)}
-                            decExtraScore={(scoreName) => this._decExtraScore(buddy.name, scoreName)}/>)}
+                <div className="selectbuttons">
+                    <p>Select:</p>
+                    <button className={this._current === "buddies" ? "active" : ""} onClick={() => this._setCurrent("buddies")}>
+                        Buddies
+                    </button>
+                    <button className={this._current === "scoutmasters" ? "active" : ""} onClick={() => this._setCurrent("scoutmasters")}>
+                        Scoutmasters
+                    </button>
                 </div>
+
+                {
+                    this._current === "buddies" ? <BuddyView ref={this._viewRef} /> : <h1>SOON!</h1>
+                }
 
                 <div className="reset">
                     <BuddyButton text="Reset" click={this._resetScores}/>

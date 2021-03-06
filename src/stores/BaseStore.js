@@ -1,67 +1,20 @@
-export default class BuddyStore {
+import type { Buddy } from "../types/Buddy";
+
+export default class BaseStore {
     #indexes = {};
+    #items;
+    #storeKey;
 
-    /**
-     *
-     * @type Buddy[]
-     */
-    #buddies = [
-        // He should be added tbh
-        /*{
-            name: 'Keitaro',
-            emoteId: '514293667041771531',
-            score: 0,
-        },*/
+    constructor(items: Buddy[], storeKey: string) {
+        this.#items = items;
+        this.#storeKey = storeKey;
 
-        {
-            name: "Hiro",
-            emoteId: "514293666853158913",
-            score: 0,
-        },
-
-        {
-            name: "Natsumi",
-            emoteId: "514293667192766465",
-            score: 0,
-        },
-
-        {
-            name: "Hunter",
-            emoteId: "514294078570102784",
-            score: 0,
-        },
-
-        {
-            name: "Yoichi",
-            emoteId: "514293667595419663",
-            score: 0,
-        },
-
-        {
-            name: "Taiga",
-            emoteId: "514293667507208193",
-            score: 0,
-            extra_scores: [
-                {
-                    title: "Top",
-                    score: 0,
-                },
-                {
-                    title: "Bottom",
-                    score: 0,
-                },
-            ],
-        },
-    ];
-
-    constructor (): void {
-        this._checkKeitaro();
         this._setIndexes();
         this._loadScores();
     }
 
-    get buddies () {
-        return this.#buddies;
+    get items (): Buddy[] {
+        return this.#items;
     }
 
     incrementScore (name: string): void {
@@ -95,7 +48,7 @@ export default class BuddyStore {
             throw new Error(`Missing buddy: ${name}`);
         }
 
-        return this.#buddies[index].score;
+        return this.#items[index].score;
     }
 
     getExtraScore (name: string, title: string): number {
@@ -105,8 +58,7 @@ export default class BuddyStore {
             throw new Error(`Missing buddy: ${name}`);
         }
 
-
-        const scores = this.#buddies[index].extra_scores;
+        const scores = this.#items[index].extra_scores;
         const sIndex = scores.findIndex((item) => item.title === title);
 
         return scores[sIndex].score;
@@ -120,7 +72,7 @@ export default class BuddyStore {
             // throw new Error(`Missing buddy: ${name}`);
         }
 
-        this.#buddies[index].score = score;
+        this.#items[index].score = score;
 
         this._saveScores();
     }
@@ -133,7 +85,7 @@ export default class BuddyStore {
             // throw new Error(`Missing buddy: ${name}`);
         }
 
-        const scores = this.#buddies[index].extra_scores;
+        const scores = this.#items[index].extra_scores;
         const sIndex = scores.findIndex((item) => item.title === title);
 
         if (sIndex < 0) {
@@ -146,36 +98,26 @@ export default class BuddyStore {
     }
 
     resetScores (): void {
-        localStorage.removeItem("buddies");
-    }
-
-    _checkKeitaro (): void {
-        if (localStorage.getItem("keitaro") === "true") {
-            this.#buddies.unshift({
-                name: "Keitaro",
-                emoteId: "514293667041771531",
-                score: 0,
-            });
-        }
+        localStorage.removeItem(this.#storeKey);
     }
 
     _setIndexes (): void {
-        for (let i = 0; i < this.#buddies.length; i++) {
-            const buddy = this.#buddies[i];
+        for (let i = 0; i < this.#items.length; i++) {
+            const buddy = this.#items[i];
 
             this.#indexes[buddy.name.toLowerCase()] = i;
         }
     }
 
     _loadScores (): void {
-        const storedBuddies = localStorage.getItem("buddies");
+        const storedBuddies = localStorage.getItem(this.#storeKey);
 
         if (storedBuddies) {
             const buddies = JSON.parse(storedBuddies);
             const keys = Object.keys(buddies);
 
             for (const name of keys) {
-                console.log(name);
+                //console.log(name);
 
                 if (name.includes("__")) {
                     // [0] == buddy name, [1] == extra name
@@ -198,7 +140,7 @@ export default class BuddyStore {
     _saveScores (): void {
         const mapped = {};
 
-        this.#buddies.forEach((buddy) => {
+        this.#items.forEach((buddy) => {
             mapped[buddy.name.toLowerCase()] = buddy.score;
 
             if (buddy.extra_scores) {
@@ -210,7 +152,6 @@ export default class BuddyStore {
 
         const json = JSON.stringify(mapped);
 
-        localStorage.setItem("buddies", json);
+        localStorage.setItem(this.#storeKey, json);
     }
-
 }

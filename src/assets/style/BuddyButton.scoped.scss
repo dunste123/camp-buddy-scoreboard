@@ -15,7 +15,7 @@ button {
     margin: 0 !important;
   }
 
-  &:hover {
+  &:hover, &.active {
     background: url("../btn_hover.png") no-repeat;
     background-size: 100% 100%;
   }

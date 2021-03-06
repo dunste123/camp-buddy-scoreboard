@@ -3,6 +3,32 @@
   display: flex;
   flex-direction: column;
 
+  .selectbuttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    align-self: center;
+    margin-bottom: 50px;
+
+    p {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    button {
+      outline: none;
+      color: #FFFFFF;
+      background: #6d3b23;
+      cursor: pointer;
+      border: none;
+      font-size: 20px;
+
+      &.active {
+        background: #194417;
+      }
+    }
+  }
+
   .buddies {
     display: flex;
     flex-wrap: wrap;
