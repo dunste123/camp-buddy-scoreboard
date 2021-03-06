@@ -32,17 +32,16 @@ export default class BuddyView extends Component {
     };
 
     resetScores = () => {
-        /*const conf = window.confirm("Hold up buddy\nThis will reset all your scores, are you sure?");
+        const conf = window.confirm("Hold up buddy\nThis will reset all your camper scores, are you sure?");
 
         if (conf) {
             this._store.resetScores();
             window.location.reload();
-        }*/
-        alert("test");
+        }
     };
 
     render () {
-        const buddies = this._store.items;
+        const buddies = this._store.buddies;
 
         return (
             <div className="buddies">

@@ -13,7 +13,7 @@ export default class BaseStore {
         this._loadScores();
     }
 
-    get items (): Buddy[] {
+    get buddies (): Buddy[] {
         return this.#items;
     }
 
