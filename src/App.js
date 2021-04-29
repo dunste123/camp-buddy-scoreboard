@@ -30,14 +30,14 @@ export default class App extends Component {
                 <ForkRibbon/>
 
                 <div className="selectbuttons">
-                    <p>Select game:</p>
+                    <span>Select game:</span>
                     <button className={this._current === "buddies" ? "active" : ""}
                         onClick={() => this._setCurrent("buddies")}>
-                        Buddies
+                        Camp Buddy
                     </button>
                     <button className={this._current === "scoutmasters" ? "active" : ""}
                         onClick={() => this._setCurrent("scoutmasters")}>
-                        Scoutmasters
+                        Scoutmaster's season
                     </button>
                 </div>
 
