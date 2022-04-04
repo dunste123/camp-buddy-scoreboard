@@ -11,7 +11,7 @@
   "devDependencies": {
     "@craco/craco": "^6.4.3",
     "craco-plugin-scoped-css": "^1.1.1",
-    "node-sass": "5.0.0"
+    "node-sass": "7.0.0"
   },
   "scripts": {
     "start-old": "react-scripts start",
