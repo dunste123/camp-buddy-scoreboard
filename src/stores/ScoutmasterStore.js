@@ -10,18 +10,6 @@ export default class ScoutmasterStore extends BaseStore {
             },
 
             {
-                name: "Hyunjin",
-                emoteId: "833333254634602496",
-                score: 0,
-            },
-
-            {
-                name: "Emilia",
-                emoteId: "837254267252899860",
-                score: 0,
-            },
-
-            {
                 name: "Goro",
                 emoteId: "514293666861416466",
                 score: 0,
